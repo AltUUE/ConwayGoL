@@ -6,5 +6,6 @@ input.txt
 saves.txt
 main.exe
 converter/converters.o
+converter/convertercli.exe
 converter/in.txt
 converter/out.txt
