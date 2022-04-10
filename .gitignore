@@ -1,0 +1,15 @@
+Color.o
+Generation.o
+GoL.o
+Timer.o
+input.txt
+saves.txt
+main.exe
+converter/converters.o
+converter/in.txt
+converter/out.txt
+converter/multiconverter
+converter/plaintextconverter
+converter/rleconverter
+converter/vanilla_to_plaintextconverter
+converter/vanilla_to_rleconverter

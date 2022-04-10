@@ -1,0 +1,54 @@
+CHANGELOG
+
+Version 2.0 (Released 4th July 2021):
+-> Changed the codebase to use a object oriented style.
+-> Introduced input and stepwise modes.
+-> Introduced some terminal text and help (press h in game).
+
+Version 2.1 (Released 5th July 2021):
+-> Made changes to input mode, now allowing deletion of squares.
+-> Added reset to delete all living squares (press x in game).
+-> Added converter to convert plaintext inputs from wiki.
+
+Version 2.1.1 (Released 27th July 2021):
+-> Added converter to convert rle inputs from wiki.
+-> Fixed bug where switching between input and automatic modes would cause unintended behavior.
+-> Added O2 to make.
+
+Version 2.2 (Released 28th July 2021):
+-> Added multilife mode (With big contributions by Altay Kilic.).
+-> Upgraded help text.
+
+---> Plans for next release:
+	-> Hotkey for saving current generation to a file.
+	-> Multilife input from file.
+	-> Updating make.
+
+Version 2.2.1 (Released 30th July 2021):
+-> Updated make.
+-> Bug fixes concerning multilife mode.
+-> Added default input to stepwise mode, which was only supported by automatic mode.
+-> Added rule: vanilla and rule: multi to input.txt, more functionality will be added using this in the next patches.
+
+---> Plans for next release:
+	-> Add reverse converters for rle and plaintext.
+	-> Add converter to convert to rule: vanilla from rule: multi
+	-> Add randomizer.
+	-> Add CLI for converters.
+
+Version 2.3 (Released 8th August 2021):
+-> Added reverse converters for rle and plaintext.
+-> Added converter to convert to rule: vanilla from rule: multi
+-> Added randomizer.
+-> Added CLI for converters. (cxxopts)
+
+Version 2.3.1 (Released 31st March 2022):
+-> Added FPS cap (60FPS) to massively reduce power and CPU usage.
+-> Updated Readme to include additional information.
+
+---> Plans for next release:
+	-> Move away from cxxopts for converter CLI.
+
+------------> Plans for further releases:
+		-> Add some kind of CLI for this implementation to calculate nth generation and output it directly.
+		-> Add text to the UI for the number of generation and zoom info etc.	
