@@ -6,11 +6,11 @@ This is a c++ implementation of Conway's Game of Life with SDL2 ui.
 Usage of this software is also discussed in the in-game help (press h in game).
 
 
-------------------------------------------------------------------------> GENERAL INFORMATION <------------------------------------------------------------------------
+-------------------------------------------------------------------------> GENERAL INFORMATION <-------------------------------------------------------------------------
 You can use "w", "a", "s", "d" to move around the map.
 You can use the mouse wheel to zoom-in (scroll up) and zoom-out (scroll down).
 Press "x" to delete all living squares.
-Pressing "space" at any time will append the current state to saves.txt in vanilla format. For more information about vanilla format, see default input specifications.
+Pressing "space" at any time will append the current state to saves.txt in vanilla format. For more information about vanilla format, see "Default Input Specifications".
 This implementation comes with 3 modes:
 	-> In the default mode, input mode, you can add or delete squares (also called living squares) with left click.
 	No new generation will be created. You can access this mode with pressing "i".
@@ -47,15 +47,33 @@ Second line syntax is very similar to vanilla syntax. Instead of (x, y) pairs th
 There are converters in the converter folder with which you can convert popular input formats to usable vanilla format.
 Vanilla is the format described above with which you can supply the input.txt file.
 Note that this implementation of GoL will not work with other formats as inputs such as rle or plaintext (abbr. ptxt).
-A converter CLI is in place to easily convert formats.
+A converter CLI is in place to easily convert formats. Please see "Convertercli Usage".
 -----------------------------------------------------------------------------------------------------------------------------
+
+
+---------------------------------------------------------> CONVERTERCLI USAGE <--------------------------------------------------------
+The general usage of convertercli is as follows:
+	-> Supply converter/in.txt with input.
+	-> Run this command: convertercli.exe input_format output_format
+		-> input_format is the format of converter/input.txt. Valid options: van (vanilla), ptxt (plaintext), rle, mul (multi).
+		-> output_format is the format of converter/output.txt. Valid options vary based on input_format:
+			-> input_format = van => valid output_format options: ptxt, rle.
+			-> input_format = rle => valid output_format options: van (only option in 2.3.2).
+			-> input_format = ptxt => valid output_format options: van (only option in 2.3.2).
+			-> input_format = mul => valid output_format options: van (No other converters will be added).
+	-> You can find the converted output in converter/out.txt.
+---------------------------------------------------------------------------------------------------------------------------------------
 
 
 ---------------------------------------------> PATCH SPECIFIC (Version 2.3.1) <---------------------------------------------
 The converter CLI currently uses cxxopts. However, this will probably change to not include cxxopts in the upcoming releases.
 In the current release multi converter appears to behave differently and not default to input.txt (in-game input file).
 This will be fixed with the new release of CLI in which all converters will default to out.txt rather than the in-game input.
+
+NOTE: Since release 2.3.2, cxxopts is no longer used.
 -----------------------------------------------------------------------------------------------------------------------------
+
+
 
 
 

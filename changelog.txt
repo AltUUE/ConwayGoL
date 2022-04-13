@@ -48,10 +48,14 @@ Version 2.3.1 (Released 31st March 2022):
 
 ---> Plans for next release:
 	-> Move away from cxxopts for converter CLI.
-
-------------> Plans for further releases:
-		-> Add some kind of CLI for this implementation to calculate nth generation and output it directly.
-		-> Add text to the UI for the number of generation and zoom info etc.
+		
+---> Plans for further releases:
+	-> Add some kind of CLI for this implementation to calculate nth generation and output it directly.
+	-> Add text to the UI for the number of generation and zoom info etc.
 
 Version 2.3.2 (Released 13th April 2022):
 -> Removed cxxopts from convertercli.cpp.
+-> Updated Readme.txt to include "Convertercli Usage".
+
+---> Plans for next release:
+	-> Add native converters for ptxt -> rle and vice versa.
