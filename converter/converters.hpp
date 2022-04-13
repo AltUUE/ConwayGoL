@@ -1,3 +1,5 @@
+// Add native rle -> ptxt and ptxt -> rle
+
 void characterCheck(std::string& s, std::ofstream& out, int& extra){
 	if(s.size() + extra > 70){
 		s.insert(70 - extra, "\n");
