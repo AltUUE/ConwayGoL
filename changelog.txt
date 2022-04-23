@@ -59,3 +59,11 @@ Version 2.3.2 (Released 13th April 2022):
 
 ---> Plans for next release:
 	-> Add native converters for ptxt -> rle and vice versa.
+
+Version 2.3.3 (Released 24th April 2022):
+-> Added native converters for ptxt -> rle and rle -> ptxt.
+-> Updated Readme.txt.
+
+---> Plans for next release:
+	-> Add comment syntax for plaintext converters.
+	-> Add comment syntax to vanilla and multi formats.

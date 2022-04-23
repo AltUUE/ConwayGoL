@@ -58,8 +58,8 @@ The general usage of convertercli is as follows:
 		-> input_format is the format of converter/input.txt. Valid options: van (vanilla), ptxt (plaintext), rle, mul (multi).
 		-> output_format is the format of converter/output.txt. Valid options vary based on input_format:
 			-> input_format = van => valid output_format options: ptxt, rle.
-			-> input_format = rle => valid output_format options: van (only option in 2.3.2).
-			-> input_format = ptxt => valid output_format options: van (only option in 2.3.2).
+			-> input_format = rle => valid output_format options: van (only option in 2.3.2), ptxt (since 2.3.3).
+			-> input_format = ptxt => valid output_format options: van (only option in 2.3.2), rle (since 2.3.3).
 			-> input_format = mul => valid output_format options: van (No other converters will be added).
 	-> You can find the converted output in converter/out.txt.
 ---------------------------------------------------------------------------------------------------------------------------------------

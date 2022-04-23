@@ -32,16 +32,22 @@ int main(int argc, char** argv) {
 			rleToVan(input_file, output_file);
 			return 0;
 		}
-//		rle -> ptxt missing!
-		RaiseError("Invalid output format. Options for this input formant: van.");
+		else if(output_format == "ptxt") {
+			rleToPtxt(input_file,  output_file);
+			return 0;
+		}
+		RaiseError("Invalid output format. Options for this input formant: van, ptxt.");
 	}
 	else if(input_format == "ptxt") {
 		if(output_format == "van") {
 			ptxtToVan(input_file, output_file);
 			return 0;
 		}
-//		ptxt -> rle missing!
-		RaiseError("Invalid output format. Options for this input format: van.");
+		else if(output_format == "rle") {
+			ptxtToRle(input_file, output_file);
+			return 0;
+		}
+		RaiseError("Invalid output format. Options for this input format: van, rle.");
 	}
 	else if(input_format == "mul") {
 		if(output_format == "van") {

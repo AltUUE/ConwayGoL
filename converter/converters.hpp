@@ -1,11 +1,11 @@
-// Add native rle -> ptxt and ptxt -> rle
+// Add comment syntax support in ptxt converters (! in line)
 
 void characterCheck(std::string& s, std::ofstream& out, int& extra){
 	if(s.size() + extra > 70){
 		s.insert(70 - extra, "\n");
 		extra = s.size() - 70;
 		out << s;
-		s = "";
+		s.clear();
 	}
 }
 
@@ -14,6 +14,86 @@ void squareCheck(std::string& s, std::vector<std::pair<int, int> >& v, int& cnt,
 		cnt++; index++; xcur++;
 	}
 	cnt == 0 ? s += 'o' : s += std::to_string(cnt + 1) + 'o';
+}
+
+void printRle(std::string& bufferstr, int& bcount, int& ocount, int& linecount, int& curindex){
+	if(bcount == 0 && ocount == 0 && linecount == 0) return;
+	if(curindex == 70){
+		bufferstr += '\n';
+		curindex = 0;
+	}
+	if(bcount != 0){
+		if(bcount == 1){
+			bufferstr += "b";
+			curindex++;
+		}
+		else{
+			std::string tempstr = std::to_string(bcount);
+			for(int t = 0; t < tempstr.length(); t++){
+				if(curindex == 70){
+					bufferstr += "\n";
+					curindex = 0;
+				}
+				bufferstr += tempstr[t];
+				curindex++;
+			}
+			if(curindex == 70){
+				bufferstr += '\n';
+				curindex = 0;
+			}
+			bufferstr += 'b';
+			curindex++;
+		}
+	bcount = 0;
+	}
+	else if(ocount != 0){
+		if(ocount == 1){
+			bufferstr += "o";
+			curindex++;
+		}
+		else{
+			std::string tempstr = std::to_string(ocount);
+			for(int t = 0; t < tempstr.length(); t++){
+				if(curindex == 70){
+					bufferstr += "\n";
+					curindex = 0;
+				}
+				bufferstr += tempstr[t];
+				curindex++;
+			}
+			if(curindex == 70){
+				bufferstr += '\n';
+				curindex = 0;
+			}
+			bufferstr += 'o';
+			curindex++;
+		}
+	ocount = 0;
+	}
+	else if(linecount != 0){
+		if(linecount == 1){
+			bufferstr += "$";
+			curindex++;
+		}
+		else{
+			std::string tempstr = std::to_string(linecount);
+			for(int t = 0; t < tempstr.length(); t++){
+				if(curindex == 70){
+					bufferstr += "\n";
+					curindex = 0;
+				}
+				bufferstr += tempstr[t];
+				curindex++;
+			}
+			if(curindex == 70){
+				bufferstr += '\n';
+				curindex = 0;
+			}
+			bufferstr += '$';
+			curindex++;
+		}
+	linecount = 0;
+	}
 }
 
 void ptxtToVan(std::ifstream& inp, std::ofstream& out){
@@ -191,4 +271,76 @@ void mulToVan(std::ifstream& inp, std::ofstream& out){
 		inp >> p2 >> c1 >> c2 >> c3;
 		out << p1 << " " << p2 << " ";
 	}
+}
+
+void rleToPtxt(std::ifstream& inp, std::ofstream& out){
+	// read entire file
+	std::stringstream strStream;
+	strStream << inp.rdbuf();
+	std::string s = strStream.str();
+
+	// input part
+	std::regex_token_iterator<std::string::iterator> rend;
+	std::regex regexpr("[#x].+");
+	s = std::regex_replace(s, regexpr, "");
+	regexpr = "\\n";
+	s = std::regex_replace(s, regexpr, "");
+	regexpr = "(?=[0-9]*b*[0-9]*o*[0-9]*).+?[$!]";
+	std::regex_token_iterator<std::string::iterator> it(s.begin(), s.end(), regexpr);
+
+	while(it!=rend){
+		std::string item = *it++;
+		std::regex regexpr2("[0-9]*[bo\\$]");
+		std::regex_token_iterator<std::string::iterator> it2(item.begin(), item.end(), regexpr2);
+		while(it2 != rend){
+			std::string element = *it2++;
+			int len = element.length();
+			if(element[len-1] == 'b'){
+				element.pop_back();
+				if(len - 1 > 0) for(int i = 0; i < stoi(element); i++) out <<'.'; 
+				else out << '.';
+			}
+			if(element[len-1] == 'o'){
+				element.pop_back();
+				if(len - 1 > 0) for(int i = 0; i < stoi(element); i++) out <<'O'; 
+				else out << 'O';
+			}
+			if(element[len-1] == '$'){
+				element.pop_back();
+				if(len - 1 > 0) for(int i = 0; i < stoi(element); i++) out <<'\n'; 
+				else out << '\n';
+			}
+		}
+	}
+}
+
+void ptxtToRle(std::ifstream& inp, std::ofstream& out){
+	std::string bufferstr;
+	char c;
+	int x = -1, y = 0, xmax = 0, ymax = 0, bcount = 0, ocount = 0, linecount = 0, curindex = 0;
+	while(inp.get(c)){
+		if(c == '\n'){
+			y++;
+			x = -1;
+		}
+		else x++;
+		if(c == '.'){
+			if(bcount == 0) printRle(bufferstr, bcount, ocount, linecount, curindex);
+			bcount++;
+		}
+		else if(c == 'O'){
+			if(ocount == 0) printRle(bufferstr, bcount, ocount, linecount, curindex);
+			ocount++;
+			if(x > xmax) xmax = x;
+			if(y > ymax) ymax = y;
+		}
+		else if(c == '\n'){
+			if(linecount == 0) printRle(bufferstr, bcount, ocount, linecount, curindex);
+			linecount++;
+		}
+	}
+
+	printRle(bufferstr, bcount, ocount, linecount, curindex);
+	out << "x = " << xmax + 1 << ", y = " << ymax + 1 << ", rule = b3/s23\n";
+	out << bufferstr << "!";
 }
