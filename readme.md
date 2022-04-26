@@ -28,8 +28,8 @@ Usage of this software is also discussed in the in-game help (press h in game).
 
 ## DEFAULT INPUT SPECIFICATIONS
 
-To have a default input you need to supply input.txt with a valid vanilla format (described below) starting position.  
-Here is the syntax description of input.txt (Which is the in-game default input) and saves.txt:
+To have a default input you need to supply `input.txt` with a valid vanilla format (described below) starting position.  
+Here is the syntax description of `input.txt` (Which is the in-game default input) and `saves.txt`:
 
     rule: vanilla  
     (x1) (y1) (x2) (y2) ...
@@ -43,11 +43,10 @@ The second line contains all `(x, y)` pairs. No line breaks are present. No part
 In the second line a cell is described by 5 parameters. 2 for position and 3 for color.  
 Second line syntax is very similar to vanilla syntax. Instead of `(x, y)` pairs there are `(x, y, red, green, blue)` quintuplets.
 
-Putting '#' at the beginning of a line will make a comment line.
-
+Putting '#' at the beginning of a line will make a comment line. However, `input.txt` currently doesn't support this (version 2.3.4).
 
 There are converters in the converter folder with which you can convert popular input formats to usable vanilla format.  
-Vanilla is the format described above with which you can supply the input.txt file.  
+Vanilla is the format described above with which you can supply the `input.txt` file.  
 Note that this implementation of GoL will not work with other formats as inputs such as `rle` or plaintext (abbr. ptxt).  
 A converter CLI is in place to easily convert formats. Please see "Convertercli Usage".
 
