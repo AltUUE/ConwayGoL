@@ -97,18 +97,25 @@ void printRle(std::string& bufferstr, int& bcount, int& ocount, int& linecount, 
 }
 
 void ptxtToVan(std::ifstream& inp, std::ofstream& out){
-	out << "rule: vanilla\n";
 	std::string s;
+	while(std::getline(inp, s) && s[0] == '!'){
+		out << '#' << s.substr(1) << '\n';
+	}
+
+	out << "rule: vanilla\n";
 	int x = 0, y = 0;
-	while(inp >> s){
+	do {
 		for(int x = 0; x < s.length(); x++) if(s[x] == 'O') out << x << ' ' << y << ' ';
 		y++;
-	}
+	} while(inp >> s); // genius
 }
 
 void vanToPtxt(std::ifstream& inp, std::ofstream& out){
 	std::string s;
-	std::getline(inp, s);
+	while(std::getline(inp, s) && s[0] == '#'){
+		out << '!' << s.substr(1) << '\n';
+	}
+
 	int x, y;
 	inp >> x >> y;
 	int xmin = x, ymin = y;
@@ -156,7 +163,7 @@ void vanToPtxt(std::ifstream& inp, std::ofstream& out){
 
 void vanToRle(std::ifstream& inp, std::ofstream& out){
 	std::string s;
-	std::getline(inp, s);
+	while(std::getline(inp, s) && s[0] == '#') out << "#C" << (s[1] == ' ' ? s.substr(1) : ' ' + s.substr(1)) << '\n';
 	int x, y;
 	inp >> x >> y;
 	int xmin = x, ymin = y, xmax = x, ymax = y;
@@ -218,9 +225,15 @@ void rleToVan(std::ifstream& inp, std::ofstream& out){
 	strStream << inp.rdbuf();
 	std::string s = strStream.str();
 
+	std::regex_token_iterator<std::string::iterator> send;
+	std::regex regexpr("#.*");
+	std::regex_token_iterator<std::string::iterator> sit(s.begin(), s.end(), regexpr);
+
+	while(sit != send) out << "#" <<(*sit++).str().substr(2) << '\n';
+
 	// input part
 	std::regex_token_iterator<std::string::iterator> rend;
-	std::regex regexpr("[#x].+");
+	regexpr = "[#x].+";
 	s = std::regex_replace(s, regexpr, "");
 	regexpr = "\\n";
 	s = std::regex_replace(s, regexpr, "");
@@ -263,11 +276,11 @@ void rleToVan(std::ifstream& inp, std::ofstream& out){
 
 void mulToVan(std::ifstream& inp, std::ofstream& out){
 	std::string s;
-	std::getline(inp, s);
+	while(std::getline(inp, s) && s[0] == '#') out << s << '\n';
 	out << "rule: vanilla\n";
 
 	int p1, p2, c1, c2, c3;
-	while(inp >> p1){
+	while (inp >> p1){
 		inp >> p2 >> c1 >> c2 >> c3;
 		out << p1 << " " << p2 << " ";
 	}
@@ -279,9 +292,15 @@ void rleToPtxt(std::ifstream& inp, std::ofstream& out){
 	strStream << inp.rdbuf();
 	std::string s = strStream.str();
 
+	std::regex_token_iterator<std::string::iterator> send;
+	std::regex regexpr("#.*");
+	std::regex_token_iterator<std::string::iterator> sit(s.begin(), s.end(), regexpr);
+
+	while(sit != send) out << '!' << (*sit++).str().substr(2) << '\n';
+
 	// input part
 	std::regex_token_iterator<std::string::iterator> rend;
-	std::regex regexpr("[#x].+");
+	regexpr = "[#x].+";
 	s = std::regex_replace(s, regexpr, "");
 	regexpr = "\\n";
 	s = std::regex_replace(s, regexpr, "");
@@ -315,10 +334,20 @@ void rleToPtxt(std::ifstream& inp, std::ofstream& out){
 }
 
 void ptxtToRle(std::ifstream& inp, std::ofstream& out){
-	std::string bufferstr;
+	std::string bufferstr, tempstr;
 	char c;
 	int x = -1, y = 0, xmax = 0, ymax = 0, bcount = 0, ocount = 0, linecount = 0, curindex = 0;
-	while(inp.get(c)){
+	while(inp.get(c) && c == '!'){
+		std::getline(inp, tempstr);
+		int len = 0;
+		bool space = (tempstr[0] == ' ');
+
+		while(len < tempstr.length()){
+			out << "#C " << tempstr.substr(len+space, 67) << '\n';
+			len += 67;
+		}
+	}
+	do {
 		if(c == '\n'){
 			y++;
 			x = -1;
@@ -338,7 +367,7 @@ void ptxtToRle(std::ifstream& inp, std::ofstream& out){
 			if(linecount == 0) printRle(bufferstr, bcount, ocount, linecount, curindex);
 			linecount++;
 		}
-	}
+	} while(inp.get(c));
 
 	printRle(bufferstr, bcount, ocount, linecount, curindex);
 	out << "x = " << xmax + 1 << ", y = " << ymax + 1 << ", rule = b3/s23\n";
