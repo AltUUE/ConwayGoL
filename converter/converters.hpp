@@ -1,5 +1,3 @@
-// Add comment syntax support in ptxt converters (! in line)
-
 void characterCheck(std::string& s, std::ofstream& out, int& extra){
 	if(s.size() + extra > 70){
 		s.insert(70 - extra, "\n");
