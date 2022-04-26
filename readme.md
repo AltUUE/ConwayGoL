@@ -43,6 +43,8 @@ The second line contains all `(x, y)` pairs. No line breaks are present. No part
 In the second line a cell is described by 5 parameters. 2 for position and 3 for color.  
 Second line syntax is very similar to vanilla syntax. Instead of `(x, y)` pairs there are `(x, y, red, green, blue)` quintuplets.
 
+Putting '#' at the beginning of a line will make a comment line.
+
 
 There are converters in the converter folder with which you can convert popular input formats to usable vanilla format.  
 Vanilla is the format described above with which you can supply the input.txt file.  
