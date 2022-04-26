@@ -35,29 +35,29 @@ Here is the syntax description of input.txt (Which is the in-game default input)
     (x1) (y1) (x2) (y2) ...
 
 First line describes the rule. Vanilla is a standart implementation of Game of Life.  
-The second line contains all (x, y) pairs. No line breaks are present. No particular order is necessary.
+The second line contains all `(x, y)` pairs. No line breaks are present. No particular order is necessary.
 
     rule: multi  
     (x1) (y1) (red1) (green1) (blue1) ...
 
 In the second line a cell is described by 5 parameters. 2 for position and 3 for color.  
-Second line syntax is very similar to vanilla syntax. Instead of (x, y) pairs there are (x, y, red, green, blue) quintuplets.
+Second line syntax is very similar to vanilla syntax. Instead of `(x, y)` pairs there are `(x, y, red, green, blue)` quintuplets.
 
 
-There are converters in the converter folder with which you can convert popular input formats to usable vanilla format.
-Vanilla is the format described above with which you can supply the input.txt file.
-Note that this implementation of GoL will not work with other formats as inputs such as `rle` or plaintext (abbr. ptxt).
+There are converters in the converter folder with which you can convert popular input formats to usable vanilla format.  
+Vanilla is the format described above with which you can supply the input.txt file.  
+Note that this implementation of GoL will not work with other formats as inputs such as `rle` or plaintext (abbr. ptxt).  
 A converter CLI is in place to easily convert formats. Please see "Convertercli Usage".
 
 ## CONVERTERCLI USAGE
 
 The general usage of convertercli is as follows:
-	- Supply converter/in.txt with input.
-	- Run this command: convertercli.exe input_format output_format
-		- input_format is the format of converter/input.txt. Valid options: `van` (vanilla), `ptxt` (plaintext), `rle`, `mul` (multi).
-		- output_format is the format of converter/output.txt. Valid options vary based on input_format:
-			- input_format = `van` => valid output_format options: `ptxt`, `rle`.
-			- input_format = `rle` => valid output_format options: `van` (only option in 2.3.2), `ptxt` (since 2.3.3).
-			- input_format = `ptxt` => valid output_format options: `van` (only option in 2.3.2), `rle` (since 2.3.3).
-			- input_format = `mul` => valid output_format options: `van` (No other converters will be added).
-	- You can find the converted output in converter/out.txt.
+- Supply converter/in.txt with input.
+- Run this command: convertercli.exe input_format output_format
+	- input_format is the format of converter/input.txt. Valid options: `van` (vanilla), `ptxt` (plaintext), `rle`, `mul` (multi).
+	- output_format is the format of converter/output.txt. Valid options vary based on input_format:
+		- input_format = `van` => valid output_format options: `ptxt`, `rle`.
+		- input_format = `rle` => valid output_format options: `van` (only option in 2.3.2), `ptxt` (since 2.3.3).
+		- input_format = `ptxt` => valid output_format options: `van` (only option in 2.3.2), `rle` (since 2.3.3).
+		- input_format = `mul` => valid output_format options: `van` (No other converters will be added).
+- You can find the converted output in converter/out.txt.
