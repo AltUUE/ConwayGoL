@@ -302,10 +302,24 @@ void GoL::changeGameMode(int mode){
 }
 
 void GoL::saveGameState(){
+	if(_gameState == GameState::AUTOMATIC)
+		changeGameMode(3);
+	
 	std::fstream appFile("saves.txt", std::fstream::app);
 	time_t tnow;
 	time(&tnow);
-	appFile << ctime(&tnow);
+	
+	std::string savename;
+	std::cout << "Save name: ";
+	std::getline(std::cin, savename);
+	SDL_RaiseWindow(_window);
+	
+	size_t nspaces=0;
+	while(savename.length() > nspaces && savename[nspaces] == ' ')
+		nspaces++;
+	appFile << "# " << (savename.length()-nspaces ? savename.substr(nspaces) : "Unnamed") << '\n';
+	
+	appFile << "# " << ctime(&tnow);
 	std::set<std::pair<std::pair<int, int>, Color>, Generation::Cmp>::iterator it;
 	if(_multi == 0){
 		appFile << "rule: vanilla\n";

@@ -1,7 +1,7 @@
 CC=g++
 cflags=-Wall -O2
-iflags=-I"C:\mingwdevlib\i686-w64-mingw32\include"
-lflags=-L"C:\mingwdevlib\i686-w64-mingw32\lib" -lmingw32 -lSDL2main -lSDL2 -lstdc++
+iflags=-I"C:/MinGW-SDL/include"
+lflags=-L"C:/MinGW-SDL/lib" -lmingw32 -lSDL2main -lSDL2 -lstdc++
 
 main.exe: main.cpp GoL.o Timer.o Generation.o Color.o
 	$(CC) $(cflags) $(iflags) $^ $(lflags) -o $@
