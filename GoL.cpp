@@ -243,16 +243,17 @@ void GoL::handleInputMode(int x, int y){
 void GoL::readFromFile(){
 	std::ifstream myFile("input.txt");
 	std::string s;
-	std::getline(myFile, s);
 	int p1, p2, c1, c2, c3;
 	Color clr(0x00, 0x00, 0x00);
+	readline: //MY EYES!!
+	std::getline(myFile, s);
 	if(s == "rule: vanilla"){
 		while(myFile >> p1){
 			myFile >> p2;
 			_generation.generation.insert({{p1, p2}, clr});
 		}
 	}
-	if(s == "rule: multi"){
+	else if(s == "rule: multi"){
 		while(myFile >> p1){
 			myFile >> p2 >> c1 >> c2 >> c3;
 			clr.rgb[0] = c1; clr.rgb[1] = c2; clr.rgb[2] = c3;
@@ -260,6 +261,8 @@ void GoL::readFromFile(){
 			_multi = 1;
 		}
 	}
+	else
+		goto readline;
 	myFile.close();
 }
 

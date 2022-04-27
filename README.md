@@ -13,6 +13,9 @@ Usage of this software is also discussed in the in-game help (press h in game).
 - You can use the mouse wheel to zoom-in (scroll up) and zoom-out (scroll down).
 - Press "x" to delete all living squares.
 - Pressing "space" at any time will append the current state to saves.txt in vanilla format. For more information about vanilla format, see "Default Input Specifications".
+	- A name for the save will be required for the game to continue.
+	- The user may enter a string to the command prompt window to name the save.
+	- Pressing "enter" without providing a string will leave the save unnamed.
 - This implementation comes with 3 modes:
 	- In the default mode, input mode, you can add or delete squares (also called living squares) with left click.
 	No new generation will be created. You can access this mode with pressing "i".
@@ -43,7 +46,7 @@ The second line contains all `(x, y)` pairs. No line breaks are present. No part
 In the second line a cell is described by 5 parameters. 2 for position and 3 for color.  
 Second line syntax is very similar to vanilla syntax. Instead of `(x, y)` pairs there are `(x, y, red, green, blue)` quintuplets.
 
-Putting '#' at the beginning of a line will make a comment line. However, `input.txt` currently doesn't support this (version 2.3.4).
+Putting '#' at the beginning of a line will make a comment line.
 
 There are converters in the converter folder with which you can convert popular input formats to usable vanilla format.  
 Vanilla is the format described above with which you can supply the `input.txt` file.  

@@ -75,3 +75,7 @@ Version 2.3.4 (Released 26th April 2022):
 ---> Plans for next release:
 	-> Add support for naming in game saves.
 	-> Currently input.txt only supports non comment inputs. Change it to include comment inputs.
+
+Version 2.3.5 (Released 27th April 2022):
+-> Added naming feature to game saves.
+-> input.txt now skips all lines before "rule".
