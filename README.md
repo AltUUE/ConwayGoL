@@ -1,13 +1,13 @@
 # Game of Life
 
-This is a c++ implementation of Conway's Game of Life with SDL2 ui.
+This is a C++ implementation of Conway's Game of Life with SDL2 ui.
 
 Algorithm designed and implemented by Altay Kılıç.  
 Ui elements and functionality designed and implemented by Umut Utku Erşahince.
 
 Usage of this software is also discussed in the in-game help (press h in game).
 
-## GENERAL INFORMATION
+### GENERAL INFORMATION
 
 - You can use "w", "a", "s", "d" to move around the map.
 - You can use the mouse wheel to zoom-in (scroll up) and zoom-out (scroll down).
@@ -26,7 +26,7 @@ Usage of this software is also discussed in the in-game help (press h in game).
 - Pressing "r" will switch to Multilife and assign random colors to every living square.
 - To exit the game, simply use the UI.
 
-## DEFAULT INPUT SPECIFICATIONS
+### DEFAULT INPUT SPECIFICATIONS
 
 To have a default input you need to supply `input.txt` with a valid vanilla format (described below) starting position.  
 Here is the syntax description of `input.txt` (Which is the in-game default input) and `saves.txt`:
@@ -50,11 +50,11 @@ Vanilla is the format described above with which you can supply the `input.txt` 
 Note that this implementation of GoL will not work with other formats as inputs such as `rle` or plaintext (abbr. ptxt).  
 A converter CLI is in place to easily convert formats. Please see "Convertercli Usage".
 
-## CONVERTERCLI USAGE
+### CONVERTERCLI USAGE
 
 The general usage of convertercli is as follows:
 - Supply converter/in.txt with input.
-- Run this command: convertercli.exe input_format output_format
+- Run this command: `convertercli.exe <input_format> <output_format>`
 	- input_format is the format of converter/input.txt. Valid options: `van` (vanilla), `ptxt` (plaintext), `rle`, `mul` (multi).
 	- output_format is the format of converter/output.txt. Valid options vary based on input_format:
 		- input_format = `van` => valid output_format options: `ptxt`, `rle`.
