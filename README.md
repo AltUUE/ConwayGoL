@@ -1,6 +1,6 @@
 # Game of Life
 
-This is a C++ implementation of Conway's Game of Life with SDL2 ui.
+This is a C++ implementation of Conway's Game of Life with SDL2 UI.
 
 Algorithm designed and implemented by Altay Kılıç.  
 Ui elements and functionality designed and implemented by Umut Utku Erşahince.
