@@ -1,8 +1,10 @@
 input.txt
 saves.txt
-main.exe
+
 converter/convertercli.exe
 converter/in.txt
 converter/out.txt
+
+bin
 deps
 obj
