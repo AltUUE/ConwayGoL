@@ -1,10 +1,8 @@
-Color.o
-Generation.o
-GoL.o
-Timer.o
 input.txt
 saves.txt
 main.exe
 converter/convertercli.exe
 converter/in.txt
 converter/out.txt
+deps
+obj

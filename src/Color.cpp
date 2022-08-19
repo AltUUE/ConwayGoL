@@ -1,4 +1,4 @@
-#include "Color.h"
+#include "../inc/Color.h"
 #include <cstdio>
 
 Color::Color(int red, int green, int blue){

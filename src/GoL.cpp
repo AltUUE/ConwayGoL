@@ -3,10 +3,10 @@
 #include <fstream>
 #include <vector>
 #include <ctime>
-#include "GoL.h"
-#include "Generation.h"
-#include "Color.h"
-#include "Timer.h"
+#include "../inc/GoL.h"
+#include "../inc/Generation.h"
+#include "../inc/Color.h"
+#include "../inc/Timer.h"
 
 void fatalError(std::string errorString){
 	std::cout << errorString << std::endl;

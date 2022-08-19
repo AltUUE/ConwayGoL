@@ -1,6 +1,6 @@
 // #include "GoL.h"
-#include "Generation.h"
-#include "Color.h"
+#include "../inc/Generation.h"
+#include "../inc/Color.h"
 
 Generation::Generation(){
 
