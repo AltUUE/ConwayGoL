@@ -242,6 +242,7 @@ void GoL::handleInputMode(int x, int y){
 
 void GoL::readFromFile(){
 	std::ifstream myFile("input.txt");
+	if(!myFile.is_open()) fatalError("Failed to load input.txt, quitting.");
 	std::string s;
 	int p1, p2, c1, c2, c3;
 	Color clr(0x00, 0x00, 0x00);
@@ -313,6 +314,7 @@ void GoL::saveGameState(){
 		changeGameMode(3);
 	
 	std::fstream appFile("saves.txt", std::fstream::app);
+	if(!appFile.is_open()) fatalError("Failed to load saves.txt, quitting.");
 	time_t tnow;
 	time(&tnow);
 	
