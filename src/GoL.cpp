@@ -11,8 +11,8 @@
 void fatalError(std::string errorString){
 	std::cout << errorString << std::endl;
 	std::cout << "press enter to quit...";
-	std::cin.get();
 	SDL_Quit();
+	std::cin.get();
 	exit(1);
 }
 

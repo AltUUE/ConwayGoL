@@ -9,6 +9,7 @@ Usage of this software is also discussed in the in-game help (press h in game).
 
 ## GENERAL INFORMATION
 
+- To launch this program, `cd into the main directory` and execute `bin/main`. If your working directory is not the main directory, default input and saves will fail to load resulting most likely in a crash if the user wants to use these features. If you want to use these features without launching using the said method, you need to recompile this codebase after you change `std::ifstream myFile("input.txt");` from GoL.cpp `readFromFile` function and `std::fstream appFile("saves.txt", std::fstream::app);` from GoL.cpp `saveGameState` function to include the absolute path to `input.txt` and `saves.txt`.
 - You can use "w", "a", "s", "d" to move around the map.
 - You can use the mouse wheel to zoom-in (scroll up) and zoom-out (scroll down).
 - Press "x" to delete all living squares.
