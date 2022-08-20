@@ -17,13 +17,17 @@ BIN=$(BINDIR)/main
 
 all: $(BIN)
 
-$(BIN): $(OBJS)
+$(BIN): $(OBJS) | $(BINDIR)
 	$(CC) $(CFLAGS) $(OBJS) $(LFLAGS) -o $@
 
-$(OBJ)/%.o: $(SRC)/%.cpp $(DEP)/%.d | $(DEP)
+$(OBJ)/%.o: $(SRC)/%.cpp $(DEP)/%.d | $(DEP) $(OBJ)
 	$(CC) $(CFLAGS) $(DEPFLAGS) $< -c -o $@
 
-$(DEPDIR): ; @mkdir -p $@
+$(DEP): ; @mkdir -p $@
+
+$(OBJ): ; @mkdir -p $@
+
+$(BINDIR): ; @mkdir -p $@
 
 DEPFILES=$(patsubst $(SRC)/%.cpp, $(DEP)/%.d, $(SRCS))
 $(DEPFILES):

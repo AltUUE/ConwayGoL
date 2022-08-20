@@ -10,10 +10,10 @@
 
 void fatalError(std::string errorString){
 	std::cout << errorString << std::endl;
-	std::cout << "enter any key to quit...";
-	int tmp;
-	std::cin >> tmp;
+	std::cout << "press enter to quit...";
+	std::cin.get();
 	SDL_Quit();
+	exit(1);
 }
 
 GoL::GoL(){
@@ -261,8 +261,12 @@ void GoL::readFromFile(){
 			_multi = 1;
 		}
 	}
-	else
+	else if(s != ""){
 		goto readline;
+	}
+	else{
+		fatalError("Default input is empty, quitting.");
+	}
 	myFile.close();
 }
 
