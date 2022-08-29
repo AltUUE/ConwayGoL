@@ -75,7 +75,7 @@ int Generation::cnt(std::pair<int,int> p){
 	return ret;
 }
 
-bool Generation::Cmp::operator()(const std::pair<std::pair<int, int>, Color>& lhs, const std::pair<std::pair<int, int>, Color>& rhs){
+bool Generation::Cmp::operator()(const std::pair<std::pair<int, int>, Color>& lhs, const std::pair<std::pair<int, int>, Color>& rhs) const{
 	if(lhs.first.second < rhs.first.second) return true;
 	if(lhs.first.second == rhs.first.second){
 		if(lhs.first.first < rhs.first.first)

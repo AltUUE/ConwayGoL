@@ -8,7 +8,7 @@ public:
 	~Generation();
 
 	struct Cmp{
-		bool operator()(const std::pair<std::pair<int, int>, Color>&, const std::pair<std::pair<int, int>, Color>&);
+		bool operator()(const std::pair<std::pair<int, int>, Color>&, const std::pair<std::pair<int, int>, Color>&) const;
 	};
 
 	void calculateNextGen();

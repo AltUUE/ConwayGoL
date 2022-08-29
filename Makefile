@@ -1,7 +1,6 @@
 CC=g++
 CFLAGS=-Wall -O2
-# IFLAGS=-I"C:/MinGW-SDL/include"
-LFLAGS=-lmingw32 -lSDL2 -lSDL2main -lstdc++
+LFLAGS=-lSDL2 -lSDL2main -lstdc++
 
 DEP=deps
 DEPFLAGS=-MT $@ -MMD -MP -MF $(DEP)/$*.d
@@ -14,8 +13,8 @@ OBJS=$(patsubst $(SRC)/%.cpp, $(OBJ)/%.o, $(SRCS))
 BINDIR=bin
 BIN=$(BINDIR)/main
 
-
 all: $(BIN)
+
 
 $(BIN): $(OBJS) | $(BINDIR)
 	$(CC) $(CFLAGS) $(OBJS) $(LFLAGS) -o $@
