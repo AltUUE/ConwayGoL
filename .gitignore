@@ -2,6 +2,7 @@ input.txt
 saves.txt
 
 converter/convertercli.exe
+converter/convertercli
 converter/in.txt
 converter/out.txt
 
