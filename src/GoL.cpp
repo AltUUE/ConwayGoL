@@ -72,7 +72,7 @@ void GoL::gameLoop(){
 		}
 		end = SDL_GetPerformanceCounter();
 		elapsed = (end - start) / (float)SDL_GetPerformanceFrequency();
-		delta = 16.6f - elapsed * 1000.0f;
+		delta = 6.6f - elapsed * 1000.0f;
 		if(delta > 0) SDL_Delay(delta);
 	}	
 }
